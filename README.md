@@ -12,15 +12,15 @@ app_1  | [2017-08-28 08:02:33 +0000] [8] [INFO] Booting worker with pid: 8
 ```
 4. The server should be up and running on port `5000`
 5. Handling the database
-  a. Initialize execute `$ docker exec fuze_app_1 python3 -c "from fuze.models import *; db.create_all()"`
-  b. Recreate execute `$ docker exec fuze_app_1 python3 -c "from fuze.models import *; db.drop_all(); db.create_all()"`
+    1. Initialize execute `$ docker exec fuze_app_1 python3 -c "from fuze.models import *; db.create_all()"`
+    2. Recreate execute `$ docker exec fuze_app_1 python3 -c "from fuze.models import *; db.drop_all(); db.create_all()"`
 6. Should now be able to make curl calls to `localhost:5000/<API>`
 
 #### If not using `Docker` + `Docker Compose`
 1. Developed with `Python3` using `Flask` and `Flask-SqlAlchemy` please run `pip3 install -r requirements.txt` to install needed modules
 2.
-  a. To initialize the data base execute `python3 -c "from fuze.models import *; db.create_all()"` from within the root directory.
-  b. The DB given in the pachage should be setup and ready to go if you don't want to run `2a`
+    1. To initialize the data base execute `python3 -c "from fuze.models import *; db.create_all()"` from within the root directory.
+    2. The DB given in the pachage should be setup and ready to go if you don't want to run `2a`
 3. To start the server run `python3 run.py`.  The server should be running on port `5000`
 4. The app should be self contained except for the external call to S3 which is just redirecting to an internal endpiont in place of S3. 
 5. `pyhton story.py` runs through an example scenario although not complete in using all endpoints. For examples of using all endpoints please refer to the tests
