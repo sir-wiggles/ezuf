@@ -1,5 +1,22 @@
 # Fuze coding challenge 
 
+#### If using `Docker` + `Docker Compose`
+1. In the root directory execute `$ docker-compose up`
+2. Wait for the containers to build
+3. You should see some logs similar to 
+```
+app_1  | [2017-08-28 08:02:33 +0000] [1] [INFO] Starting gunicorn 19.7.1
+app_1  | [2017-08-28 08:02:33 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+app_1  | [2017-08-28 08:02:33 +0000] [1] [INFO] Using worker: sync
+app_1  | [2017-08-28 08:02:33 +0000] [8] [INFO] Booting worker with pid: 8
+```
+4. The server should be up and running on port `5000`
+5. Handling the database
+    a. Initialize execute `$ docker exec fuze_app_1 python3 -c "from fuze.models import *; db.create_all()"`
+    b. Recreate execute `$ docker exec fuze_app_1 python3 -c "from fuze.models import *; db.drop_all(); db.create_all()"`
+6. Should now be able to make curl calls to `localhost:5000/<API>`
+
+#### If not using `Docker` + `Docker Compose`
 1. Developed with `Python3` using `Flask` and `Flask-SqlAlchemy` please run `pip3 install -r requirements.txt` to install needed modules
 2a. To initialize the data base execute `python3 -c "from fuze.models import *; db.create_all()"` from within the root directory.
 2b. The DB given in the pachage should be setup and ready to go if you don't want to run `2a`
@@ -9,7 +26,7 @@
 6. To run the tests execute `nosetests tests/*`
 
 
-*Overall project scructure*
+#### Overall project scructure
 
 ```
 .
